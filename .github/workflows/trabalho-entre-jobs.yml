@@ -14,10 +14,16 @@ jobs:
       - name: Exibir uma mensagem
         run: echo "Estou fazendo o curso de Github Actions da Linuxtips" > ${{ github.workspace }}/mensagem.txt
 
+      - name: Ver o conteudo do diretorio
+        run: ls -lha
+
       - uses: actions/upload-artifact@v4
         with: 
           name: strigus-upload
           path: ${{ github.workspace }}/mensagem.txt
+
+      - name: Ver o conteudo do diretorio
+        run: ls -lha
 
   job_2:
     runs-on: ubuntu-latest
