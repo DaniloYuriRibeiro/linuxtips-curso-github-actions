@@ -21,7 +21,7 @@ jobs:
         run: echo "Executando na imagem ${{ inputs.docker_image }}"
 
       - name: Executar Container
-        run: docker run -rm ${{ inputs.docker_image }}
+        run: docker run --rm ${{ inputs.docker_image }}
 
 
 
