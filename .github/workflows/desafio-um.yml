@@ -18,7 +18,7 @@ jobs:
         run: docker images
 
       - name: Analisar imagem com Docker Scout
-        uses: docker/scout-action@v1
+        uses: docker/scout-action@v1.24.0
         with:
           command: cves
           image: ${{ inputs.docker_image }}
