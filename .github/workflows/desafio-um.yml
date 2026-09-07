@@ -22,5 +22,6 @@ jobs:
         with:
           command: cves
           image: ${{ inputs.docker_image }}
+          summary: true
         
          
