@@ -17,8 +17,10 @@ jobs:
       - name: mostrar imagens no runner
         run: docker images
 
-      - name: Informar imagem sendo utilizada
-        run: echo "Executando na imagem ${{ inputs.docker_image }}"
-
-      - name: Executar Container
-        run: docker run --rm ${{ inputs.docker_image }}
+      - name: Analisar imagem com Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          command: cves
+          image: ${{ inputs.docker_image }}
+        
+         
