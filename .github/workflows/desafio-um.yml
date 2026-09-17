@@ -16,7 +16,7 @@ jobs:
 
       - name: mostrar imagens no runner
         run: |
-          $IMAGE_NAME=$(echo "${{ inputs.docker_image }}" | cut -d ':' -f 1)
+          IMAGE_NAME=$(echo "${{ inputs.docker_image }}" | cut -d ':' -f 1)
           docker images | grep $IMAGE_NAME
 
       - name: Analisar imagem com Docker Scout
