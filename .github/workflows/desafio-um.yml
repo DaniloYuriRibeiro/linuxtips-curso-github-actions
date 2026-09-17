@@ -15,10 +15,15 @@ jobs:
         run: docker pull ${{ inputs.docker_image }}
 
       - name: mostrar imagens no runner
-        run: docker images
+        run: |
+          IMAGE_NAME=$(echo "${{ inputs.docker_image }}" | cut -d ':' -f 1)
+          docker images | grep $IMAGE_NAME
 
-      - name: Informar imagem sendo utilizada
-        run: echo "Executando na imagem ${{ inputs.docker_image }}"
-
-      - name: Executar Container
-        run: docker run --rm ${{ inputs.docker_image }}
+      - name: Analisar imagem com Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          command: cves
+          image: ${{ inputs.docker_image }}
+          only-severities: critical,high
+        
+         
