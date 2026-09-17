@@ -14,14 +14,16 @@ jobs:
       - name: Baixar imagem Docker
         run: docker pull ${{ inputs.docker_image }}
 
-      - name: mostrar imagens no runner
-        run: docker images
+      - name: mostrar imagens no runner|
+        run: |
+          $IMAGE_NAME=$(echo "${{ inputs.docker_image }}" | cut -d ':' -f1)
+          docker images | grep $IMAGE_NAME
 
       - name: Analisar imagem com Docker Scout
-        uses: docker/scout-action@v1.24.0
+        uses: docker/scout-action@v1
         with:
           command: cves
           image: ${{ inputs.docker_image }}
-          summary: true
+          only-severities: critical,high
         
          
